@@ -7,31 +7,37 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       darkTheme: ThemeData(
         brightness:  Brightness.dark,
+        fontFamily: 'TrainOne',
+        textTheme: ThemeData.dark().textTheme.copyWith(
+          title: TextStyle(fontSize: 20 ),
+            body1: TextStyle(fontSize: 20 ),
+        )
+        
       ) ,
       themeMode: ThemeMode.dark,
       theme:ThemeData(primaryColor:  Colors.red,
+    
      ),
       
-home: HomePage(),
+home: CategoryScreen(),
       
     );
 
   }
 }
 
-class HomePage extends StatefulWidget {
- @override
-  HomePageState createState() => HomePageState();
-}
+// class HomePage extends StatefulWidget {
+//  @override
+//   HomePageState createState() => HomePageState();
+// }
 
-class HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(" Meals App"),),
-      body: CategoryScreen(),
+// class HomePageState extends State<HomePage> {
+//   @override
+//   Widget build(BuildContext context) {
+    
+//       home: CategoryScreen();
       
-    );
-  }
+    
+//   }
 
-}
+// }
