@@ -13,7 +13,7 @@ class CategoryItem extends StatelessWidget {
     return InkWell(
       onTap: () => Navigator.of(context).pushNamed(
         CategoryMealScreen.routeName,
-        arguments: {'id': id , 'title':title },
+        arguments: {'id': id, 'title': title},
       ),
       splashColor: Colors.black87,
       borderRadius: BorderRadius.circular(20),
