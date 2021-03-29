@@ -1,16 +1,20 @@
+// individual category item such as hamburger , german
+// card of category
 import 'package:flutter/material.dart';
 import '../screen/category_meal_screen.dart';
 
 class CategoryItem extends StatelessWidget {
+  final String id;
   final String title;
   final Color color;
-  CategoryItem(this.title, this.color);
+  CategoryItem(this.id, this.title, this.color);
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-        return CategoryMealScreen();
-      })),
+      onTap: () => Navigator.of(context).pushNamed(
+        CategoryMealScreen.routeName,
+        arguments: {'id': id , 'title':title },
+      ),
       splashColor: Colors.black87,
       borderRadius: BorderRadius.circular(20),
       child: Container(

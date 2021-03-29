@@ -1,3 +1,5 @@
+//concrete class for categories
+
 import 'package:flutter/material.dart';
 
 class Category {

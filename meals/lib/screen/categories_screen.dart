@@ -1,3 +1,5 @@
+
+// front screen that displays all the title of categories 
 import 'package:flutter/material.dart';
 import 'package:meals/models/dummy_data.dart';
 import 'package:meals/widgets/category_item.dart';
@@ -18,7 +20,7 @@ class CategoryScreen extends StatelessWidget {
           maxCrossAxisExtent: 200,
         ),
         children: DUMMY_CATEGORIES
-            .map((data) => CategoryItem(data.title, data.color))
+            .map((data) => CategoryItem(data.id, data.title, data.color))
             .toList(),
         //CategoryItem(title, color),
       ),
