@@ -10,6 +10,7 @@ class MealItem extends StatelessWidget {
   final String imageUrl;
   final Complexity complexity;
   final Affordability affordable;
+  final Function removeItem;
   Widget bottomShow(IconData icon, String text) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,17 +51,17 @@ class MealItem extends StatelessWidget {
   void recipeePage(context) {
     Navigator.pushNamed(context, MealDetailScreen.routeName, arguments: {
       'id': id,
-
-    });
+    }).then((value) {if(value!=Null) removeItem(value);});
   }
 
   const MealItem(
       {@required this.id,
-        @required this.title,
+      @required this.title,
       @required this.duration,
       @required this.imageUrl,
       @required this.complexity,
-      @required this.affordable});
+      @required this.affordable, 
+      @required this.removeItem});
   @override
   Widget build(BuildContext context) {
     return InkWell(

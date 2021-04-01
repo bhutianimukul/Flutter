@@ -4,7 +4,11 @@ import '../models/dummy_data.dart';
 import '../models/meal.dart';
 
 class MealDetailScreen extends StatelessWidget {
+
   static const routeName = '/mealdetailScreen';
+  final Function toggleFav;
+  final Function  isFav;
+  MealDetailScreen(this.toggleFav, this.isFav);
   Widget buildTitle(context, String s){
    return  Container(
             child: Text(
@@ -48,7 +52,13 @@ class MealDetailScreen extends StatelessWidget {
       appBar: AppBar(
           title: Text(
         ('${meal.title}'),
-      )),
+        
+      ), 
+      actions: [isFav(meal.id)==false ?IconButton(icon: Icon(Icons.favorite_sharp), onPressed: (){
+        toggleFav(meal.id);
+      }):IconButton(icon: Icon(Icons.star), onPressed: (){
+        toggleFav(meal.id);
+      })],),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -74,8 +84,24 @@ class MealDetailScreen extends StatelessWidget {
               );}, itemCount: meal.steps.length,)),
               SizedBox(height: 10),
           ],
+          
         ),
+        
       ),
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+Navigator.pop(context, mealId);
+
+      },
+      focusColor: Colors.black,
+      child: Icon(
+        Icons.delete,
+        
+        color: Colors.white,
+      ),),
+      
+      
     );
   }
 }

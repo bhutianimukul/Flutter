@@ -1,23 +1,48 @@
 //to display specific dishes of categories
 import 'package:flutter/material.dart';
+import 'package:meals/models/meal.dart';
 import 'package:meals/widgets/meal_item.dart';
-import '../models/dummy_data.dart';
 
-class CategoryMealScreen extends StatelessWidget {
+class CategoryMealScreen extends StatefulWidget {
   static const routeName = 'categoryMeals';
-  // final String Categoryid;
-  // final String Categorytitle;
-  // CategoryMealScreen(this.Categoryid,this.Categorytitle);
+final List<Meal> availableMeals;
+
+  const CategoryMealScreen( this.availableMeals);
   @override
-  Widget build(BuildContext context) {
-    //extracting
-    var routesarg =
+  _CategoryMealScreenState createState() => _CategoryMealScreenState();
+}
+
+class _CategoryMealScreenState extends State<CategoryMealScreen> {
+  String dishtitle;
+  List <Meal> dishList;
+
+  @override
+    void initState() {
+   
+      super.initState();
+    }
+    @override
+      void didChangeDependencies() {
+        var routesarg =
         ModalRoute.of(context).settings.arguments as Map<String, String>;
-    final dishtitle = routesarg['title'];
+    dishtitle = routesarg['title'];
     final dishId = routesarg['id'];
-    final dishList = DUMMY_MEALS.where((element) {
+     dishList = widget.availableMeals.where((element) {
       return element.categories.contains(dishId);
     }).toList();
+        super.didChangeDependencies();
+      }
+   void removeItem(value){
+     setState(() {
+             dishList.removeWhere((element) => element.id==value);
+          });
+     
+    }
+  @override
+  Widget build(BuildContext context) {
+   
+    //extracting
+   
     return Scaffold(
       appBar: AppBar(
           title: Text(
@@ -33,6 +58,7 @@ class CategoryMealScreen extends StatelessWidget {
             complexity: dishList[index].complexity,
             affordable: dishList[index].affordability,
             duration: dishList[index].duration,
+            removeItem: removeItem,
           );
         },
         itemCount: dishList.length,

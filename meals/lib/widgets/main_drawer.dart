@@ -1,6 +1,5 @@
 // to  manage side drawer
 import 'package:flutter/material.dart';
-import 'package:meals/screen/favorites_screen.dart';
 import 'package:meals/screen/filter_screen.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -31,7 +30,7 @@ class MainDrawer extends StatelessWidget {
             
             ),
             onTap: (){
-              Navigator.pushReplacementNamed(context, '/firstroute');
+              Navigator.pushNamed(context, '/');
             },
           //  onTap: ()=>Navigator.of(context).pushNamed('\');
 
@@ -45,7 +44,7 @@ class MainDrawer extends StatelessWidget {
             title: Text('filter', style: TextStyle(fontSize: 40),
             
             ),
-            onTap:   (){Navigator.pushReplacementNamed(context, FilterScreen.routeName);
+            onTap:   (){Navigator.pushNamed(context, FilterScreen.routeName);
             },
           )
         ],

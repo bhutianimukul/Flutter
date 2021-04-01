@@ -1,6 +1,7 @@
 //to handle tabs
 
 import 'package:flutter/material.dart';
+import 'package:meals/models/meal.dart';
 import 'package:meals/screen/favorites_screen.dart';
 import 'package:meals/widgets/main_drawer.dart';
 
@@ -8,17 +9,27 @@ import 'categories_screen.dart';
 
 class TabsScreen extends StatefulWidget {
   
+  final List<Meal> favList;
+  TabsScreen(this.favList);
+  
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
   int _selectedIndex = 0;
 
 class _TabsScreenState extends State<TabsScreen> {
-  final List<Map<String , dynamic>> _pages = [
+   List<Map<String , dynamic>> _pages;
+  @override
+    void initState() {
+  
+       _pages = [
     {'page':CategoryScreen(), 'title': 'Categories'},
-      {'page':FavoritesScreen(), 'title': 'Favorites'},
+      {'page':FavoritesScreen(widget.favList), 'title': 'Favorites'},
  
   ];
+      super.initState();
+    }
+
   @override
   Widget build(BuildContext context) {
     // return DefaultTabController(
